@@ -1,0 +1,64 @@
+#include <iostream>
+#include <string>
+#include <cmath>
+using namespace std;
+
+void dz1 () {
+    double pi = 3.141592653589793;
+    double h, R, r, l;
+    cout << "введите h: ";
+    cin >> h;
+    cout << "введите R: ";
+    cin >> R;
+    cout << "введите r: ";
+    cin >> r;
+    cout << "введите l: ";
+    cin >> l;
+    double v = (1.0 / 3.0) * pi * h * (R*R + R*r + r*r);
+    double s = pi * (R*R + (R+r)*l + r*r);
+    cout << "V =" << v << endl;
+    cout << "S =" << s << endl;
+}
+void dz2() {
+    double x, a;
+    cout << "введите x: ";
+    cin >> x;
+    cout << "введите a: ";
+    cin >> a;
+    double w;
+    if ( abs(x) < 1) {
+        w = a * log(abs(x));
+    }
+    else {
+        w = sqrt(a - x*x);
+    }
+    cout << "w =" << w << endl;
+
+}
+void dz3() {
+    double x, y, b;
+    cout << "введите переменные x, y, b через пробел: ";
+    cin >> x >> y >> b;
+    double z = log(b-y) * sqrt(b-x);
+    cout << "z =" << z << endl;
+
+}
+void dz4 (){
+    int n;
+    cout << "введите число: ";
+    cin >> n;
+    for(int i = 0;i < 10; i++){
+        cout << n + i << endl;
+    }
+}
+void dz5() {
+    for(double x = -4; x <= 4; x += 0.5){
+        double y = (x*x - 2*x + 2) / (x-1);
+        cout << "x = " << x << ", y = " << y << endl;
+    }
+
+}
+int main() {
+    dz5();
+    return 0;
+}
