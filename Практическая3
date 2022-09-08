@@ -1,3 +1,10 @@
+#include <iostream>
+#include <fstream>
+#include <cmath>
+#include <string>
+using namespace std;
+
+
 void dz1() {
     double S, p, n;
     cout  << "Введите переменны S, p, n через пробел: ";
@@ -5,4 +12,77 @@ void dz1() {
     double r = p / 100.0;
     double m = (S * r * pow(1 + r, n)) / (12 * (pow(1 + r, n) - 1));
     cout << "m = " << m << endl;
+}
+// нужно доделать!!!!
+void dz2() {
+    double S, m, n;
+    cout << "введите переменные S, m, n через пробел: " << endl;
+
+}
+
+void dz3() {
+    ifstream file;
+    file.open("/home/nikita/Projects/Procedurka/practise_3_dz3.txt");
+    string text[2];
+    for (int i = 0; i < 2; i++) {
+        getline(file, text[i]);
+    }
+    for(int i=0;i<2;i++){
+        cout << text[i] << endl;
+    }
+}
+bool is_it_num(char s){
+    char nums[10] = {'0','1', '2', '3', '4', '5', '6', '7', '8', '9'};
+    for(int i = 0; i < 10;i++){
+        if (nums[i] == s){
+            return true;
+        }
+    }
+    return false;
+}
+void dz4() {
+    ifstream file;
+    file.open("/home/nikita/Projects/Procedurka/practise_3_dz_4.txt");
+    string text;
+    getline(file, text);
+    string num = "";
+    for(int i = 0; i < text.size(); i++) {
+        if (is_it_num(text[i])) {
+            num += text[i];
+        }
+        else {
+            if (num != ""){
+                cout << num << endl;
+            }
+            num = "";
+        }
+    }
+}
+void dz5() {
+    ifstream file;
+    file.open("/home/nikita/Projects/Procedurka/practise_3_dz_5.txt");
+    string text;
+    getline(file, text);
+    bool flag = true;
+    while (flag) {
+        int count = 0;
+        for (int i = 0;i < text.size()-1; i++){
+            if ((int)text[i] > (int)text[i+1])  {
+                char temp;
+                temp = text[i+1];
+                text[i+1] = text[i];
+                text[i] = temp;
+                count++;
+            }
+
+        }
+        if (count == 0) {
+            flag = false;
+        }
+    }
+    cout << text << endl;
+};
+int main() {
+    dz5();
+    return 0;
 }
