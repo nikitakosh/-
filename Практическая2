@@ -5,19 +5,30 @@ using namespace std;
 
 void dz1 () {
     double pi = 3.141592653589793;
-    double h, R, r, l;
+    double h, R, r;
     cout << "введите h: ";
     cin >> h;
     cout << "введите R: ";
     cin >> R;
     cout << "введите r: ";
     cin >> r;
-    cout << "введите l: ";
-    cin >> l;
-    double v = (1.0 / 3.0) * pi * h * (R*R + R*r + r*r);
-    double s = pi * (R*R + (R+r)*l + r*r);
-    cout << "V =" << v << endl;
-    cout << "S =" << s << endl;
+    if (h > 0 and R > 0 and r > 0 and r != R) {
+        double l;
+        if (r > R) {
+            l = sqrt((r-R)*(r-R) + h*h);
+        }
+        else {
+            l = sqrt((R-r)*(R-r) + h*h);
+        }
+        double v = (1.0 / 3.0) * pi * h * (R*R + R*r + r*r);
+        double s = pi * (R*R + (R+r)*l + r*r);
+        cout << "V =" << v << endl;
+        cout << "S =" << s << endl;
+    }
+    else {
+        cout << "введены недопустимые числа" << endl;
+    }
+
 }
 void dz2() {
     double x, a;
@@ -26,21 +37,29 @@ void dz2() {
     cout << "введите a: ";
     cin >> a;
     double w;
-    if ( abs(x) < 1) {
+    if ( abs(x) < 1 and x != 0) {
         w = a * log(abs(x));
+        cout << "w =" << w << endl;
+
+    }
+    else if ((a - x*x) >= 0 and abs(x) >= 1){
+        w = sqrt(a - x*x);
+        cout << "w =" << w << endl;
     }
     else {
-        w = sqrt(a - x*x);
+        cout << "введены недопустимая комбинация чисел" << endl;
     }
-    cout << "w =" << w << endl;
 
 }
 void dz3() {
     double x, y, b;
     cout << "введите переменные x, y, b через пробел: ";
     cin >> x >> y >> b;
-    double z = log(b-y) * sqrt(b-x);
-    cout << "z =" << z << endl;
+    if ((b-y) > 0 and (b-x) >= 0) {
+        double z = log(b-y) * sqrt(b-x);
+        cout << "z =" << z << endl;
+    }
+
 
 }
 void dz4 (){
