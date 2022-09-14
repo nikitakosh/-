@@ -99,6 +99,30 @@ void dz6() {
     }
     cout << num << endl;
 }
+void dz4() {
+    for (int i = 0; i < 13;i++) {
+        for(int j = 0; j < 50; j++) {
+            if (i < 4 and j < 12) {
+                cout << '*';
+            }
+            else {
+                cout << "-";
+            }
+            if (j == 49){
+                cout << "\n";
+            }
+        }
+    }
+}
+void dz5() {
+    for(int i = -100; i < 100; i++){
+        for(int j = -100; j < 100; j++){
+            if (j == sin(i) or i == sin(j)){
+                cout << "*";
+            }
+        }
+    }
+}
 void dz9() {
     cout << "введите число и основание системы счисления через пробел: ";
     int num, p;
@@ -106,13 +130,9 @@ void dz9() {
     cout << "введите основание системы счисления, в которое хотите перевести своё число: ";
     int z;
     cin >> z;
-    string num_new = "";
-    while (num > 0) {
-        num_new = (string) (num%p) + num_new;
-    }
 }
 
 int main() {
-    dz6();
+    dz5();
     return 0;
 }
