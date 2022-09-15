@@ -13,10 +13,22 @@ void dz1() {
     double m = (S * r * pow(1 + r, n)) / (12 * (pow(1 + r, n) - 1));
     cout << "m = " << m << endl;
 }
-// нужно доделать!!!!
+
 void dz2() {
     double S, m, n;
     cout << "введите переменные S, m, n через пробел: " << endl;
+    cin >> S >> m >> n;
+    double ans = 0;
+    double razn = 1000000000000;
+    for(double r = 0.00; r <= 1; r += 0.01) {
+        double p = (S*r*pow(1+r, n)) / (12*(pow(1+r, n) - 1));
+        if (abs(m-p) < razn){
+            razn = abs(m-p);
+            ans = r;
+        }
+    }
+    cout << 100 * ans << endl;
+
 
 }
 
@@ -83,6 +95,8 @@ void dz5() {
     cout << text << endl;
 };
 int main() {
-    dz5();
+    dz2();
     return 0;
+}
+
 }
