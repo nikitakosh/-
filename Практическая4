@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <vector>
 #include <cmath>
 #include <string>
 using namespace std;
@@ -115,13 +116,42 @@ void dz4() {
     }
 }
 void dz5() {
-    for(int i = -100; i < 100; i++){
-        for(int j = -100; j < 100; j++){
-            if (j == sin(i) or i == sin(j)){
-                cout << "*";
+    const double pi = acos(-1);
+    char scene[101][101];
+    for(int y = 0; y < 101;y++){
+        for(int x = 0; x < 101;x++){
+            if (y == 50){
+                scene[x][y] = '-';
+            }
+            else if (x == 50) {
+                scene[x][y] = '-';
+            }
+            else{
+                scene[x][y] = '0';
             }
         }
     }
+    for(int y = 0; y < 101; y++) {
+        for (int x = 0; x < 101; x++) {
+            double cord_x = x * (pi/6);
+            double cord_y = y * 0.5;
+            if (cord_y == floor(sin(cord_x))) {
+                scene[x][y] = '*';
+            }
+
+        }
+    }
+    for(int i = 0; i< 101; i++) {
+        for(int j = 0;j < 101; j++) {
+            if (j != 100){
+                cout << scene[i][j];
+            }
+            else {
+                cout << scene[i][j] << endl;
+            }
+        }
+    }
+
 }
 void dz9() {
     cout << "введите число и основание системы счисления через пробел: ";
@@ -131,7 +161,8 @@ void dz9() {
     int z;
     cin >> z;
 }
-
+void test(){
+}
 int main() {
     dz5();
     return 0;
