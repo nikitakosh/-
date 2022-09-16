@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <fstream>
 #include <cmath>
@@ -11,11 +10,18 @@ void dz1() {
     cout  << "Введите переменны S, p, n через пробел: ";
     cin >> S >> p >> n;
     double r = p / 100.0;
-    if (n > 0 and p > 0 and S > 0 and (pow(1+r, n) - 1) != 0){
+    if (n == 0){
+        cout << "месячная выплата равна " << S << endl;
+    }
+    else if (p == 0){
+       cout << "месячная выплата равна " << (S / (12*n)) << endl;
+    }
+    else {
         double m = (S * r * pow(1 + r, n)) / (12 * (pow(1 + r, n) - 1));
         cout << "m = " << m << endl;
     }
-    
+
+
 }
 
 void dz2() {
@@ -24,17 +30,22 @@ void dz2() {
     cin >> S >> m >> n;
     double ans = 0;
     double razn = 1000000000000;
-    for(double r = 0.00; r <= 1; r += 0.01) {
-        if (n > 0 and r > 0 and S > 0 and (pow(1+r, n) - 1) != 0){
+    if (n == 0) {
+        cout << "процент равен 0" << endl;
+    }
+    else {
+        for(double r = 0.01; r <= 1; r += 0.01) {
+
             double p = (S*r*pow(1+r, n)) / (12*(pow(1+r, n) - 1));
             if (abs(m-p) < razn){
                 razn = abs(m-p);
                 ans = r;
             }
+
+
         }
-        
+        cout << 100 * ans << endl;
     }
-    cout << 100 * ans << endl;
 
 
 }
@@ -42,12 +53,23 @@ void dz2() {
 void dz3() {
     ifstream file;
     file.open("/home/nikita/Projects/Procedurka/practise_3_dz3.txt");
-    string text[2];
-    for (int i = 0; i < 2; i++) {
-        getline(file, text[i]);
-    }
-    for(int i=0;i<2;i++){
-        cout << text[i] << endl;
+    string text = "";
+    getline(file, text);
+    cout << text << endl;
+    bool flag = true;
+    while (flag){
+        string otvet;
+        cout << "считать файл ещё раз?(да/нет) ";
+        cin >> otvet;
+        if (otvet == "да") {
+            file.seekg(0);
+            string text = "";
+            getline(file, text);
+            cout << text << endl;
+        }
+        else {
+            flag = false;
+        }
     }
 }
 bool is_it_num(char s){
@@ -102,7 +124,7 @@ void dz5() {
     cout << text << endl;
 };
 int main() {
-    dz2();
+    dz3();
     return 0;
 }
 
