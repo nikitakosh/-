@@ -72,8 +72,14 @@ void dz4 (){
 }
 void dz5() {
     for(double x = -4; x <= 4; x += 0.5){
-        double y = (x*x - 2*x + 2) / (x-1);
-        cout << "x = " << x << ", y = " << y << endl;
+        if (x != 1) {
+            double y = (x*x - 2*x + 2) / (x-1);
+            cout << "x = " << x << ", y = " << y << endl;
+        }
+        else {
+            cout << "значение не определено про x = 1";
+        }
+        
     }
 
 }
