@@ -80,7 +80,7 @@ void dz7() {
     int i;
     cout << "введите число: " << endl;
     cin >> i;
-    cout << randint(i) << endl;
+    cout << randint(i+1) << endl;
 
 
 
@@ -88,9 +88,9 @@ void dz7() {
 
 void dz8() {
     double A[3][4] = {{5, 2, 0, 10},
-                   {3, 5, 2, 5},
-                   {20, 0, 0, 0},
-                    };
+                      {3, 5, 2, 5},
+                      {20, 0, 0, 0},
+    };
     double B[4][2] = {
             {1.20, 0.50},
             {2.80, 0.40},
@@ -243,6 +243,6 @@ void dz9() {
 }
 
 int main() {
-    dz8();
+    dz7();
     return 0;
 }
