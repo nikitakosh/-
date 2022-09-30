@@ -37,6 +37,9 @@ void dz1() {
     else if (p == 0){
         cout << "месячная выплата равна " << (S / (12*n)) << endl;
     }
+    else if (n != int(n) and (1 + r) < 0){
+        cout << "данные введены некорректно" <<  endl;
+    }
     else {
         double m = (S * r * pow(1 + r, n)) / (12 * (pow(1 + r, n) - 1));
         cout << "m = " << m << endl;
@@ -57,7 +60,7 @@ void dz2() {
         cout << "процент равен 0" << endl;
     }
     else {
-        ans = bin_search(-1000.01, 1000, m, S, n);
+        ans = bin_search(-1.01, 1, m, S, n);
         cout << 100 * ans << endl;
     }
 
@@ -160,6 +163,6 @@ void dz5() {
     cout << text << endl;
 };
 int main() {
-    dz4();
+    dz1();
     return 0;
 }
