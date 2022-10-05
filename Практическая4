@@ -98,22 +98,74 @@ void dz8() {
             {2.00, 1.50},
     };
     double C[3][2];
-    for(int i = 0; i < 3; i++){
-        for(int k = 0; k < 2; k++){
+    for(int i = 0; i < 3; i++) {
+        for (int k = 0; k < 2; k++) {
             double sum = 0;
-            for(int j = 0; j < 4; j++) {
-                sum += A[i][j]*B[j][k];
+            for (int j = 0; j < 4; j++) {
+                sum += A[i][j] * B[j][k];
             }
             C[i][k] = sum;
-
         }
+    }
+    int dohod[3];
+    for(int i = 0; i < 3; i++){
+        dohod[i] = 0;
     }
     for(int i = 0; i < 3; i++){
-        for(int j = 0; j < 2; j++) {
-            cout << C[i][j] << " ";
-        }
-        cout << "\n";
+        dohod[i] = C[i][0] - C[i][1];
     }
+    int maxim = -10000;
+    int minim = 100000000;
+    int greatest;
+    int smallest;
+    for(int i = 0; i < 3; i++){
+        if (dohod[i] > maxim){
+            maxim = dohod[i];
+            greatest = i+1;
+        }
+        if (dohod[i] < minim){
+            minim = dohod[i];
+            smallest = i + 1;
+        }
+    }
+    cout << "продваец номер " << greatest << " выручил больше всего денег\n";
+    cout << "продавец номер " << smallest << " выручил меньше всего денег\n";
+    maxim = -1000000000;
+    minim = 1000000000;
+    for(int i = 0; i < 3; i++){
+        for(int j = 0; j < 2; j++){
+            if (j == 1){
+                if (C[i][j] > maxim){
+                    maxim = C[i][j];
+                    greatest = i+1;
+                }
+                if (C[i][j] < minim){
+                    minim = C[i][j];
+                    smallest = i+1;
+                }
+            }
+        }
+    }
+    cout << "продавец номер " << greatest << " получил наибольшие комиссионные\n";
+    cout << "продавец номер " << smallest << " получил наименьшие комиссионные\n";
+    int summa = 0;
+    int komis = 0;
+    int total_sum = 0;
+    for(int i = 0; i < 3; i++){
+        summa += C[i][0];
+        komis += C[i][1];
+        total_sum += C[i][0] + C[i][1];
+    }
+    cout << "общая сумма денег, вырученная за проданные товары " << summa << "\n";
+    cout << "всего комиссионных получили " << komis << "\n";
+    cout << "общая сумма денег, прошедших через руки продавцов " << total_sum << "\n";
+
+
+
+
+
+
+
 }
 
 void sinus(){
@@ -243,6 +295,6 @@ void dz9() {
 }
 
 int main() {
-    dz7();
+    dz8();
     return 0;
 }
