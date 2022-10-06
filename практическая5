@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -61,11 +62,24 @@ void dz2(){
     resheto(a + 1);
 
 }
-void dz3(){
+void dz3_1(){
+    ifstream file;
+    file.open("/home/nikita/Projects/Procedurka/practise_5_dz_3.txt");
+    string s;
+    getline(file, s);
+    for(int i = 0; i < s.size();i++){
+        if (s[i] == ' ') {
+            s[i] = '&';
+        }
+    }
+    file.close();
+    ofstream new_file;
+    new_file.open("/home/nikita/Projects/Procedurka/practise_5_dz_3.txt");
+    new_file << s;
+    new_file.close();
 
-    
 }
 int main() {
-    dz2();
+    dz3_1();
     return 0;
 }
