@@ -169,8 +169,8 @@ void dz8() {
 }
 
 void sinus(){
-    int width = 50;
-    int height = 20;
+    int width = 70;
+    int height = 30;
     double error = 0.05;
     double PI = acos(-1.0);
 
@@ -273,28 +273,119 @@ void dz4() {
 
 void dz9() {
     cout << "введите число и основание системы счисления через пробел: ";
-    int num, p;
-    cin >> num >> p;
-    cout << "введите основание системы счисления, в которое хотите перевести своё число: ";
-    int z;
-    cin >> z;
-    string ans;
-    // переводим в десятичную
-    string num_str = to_string(num);
-    int dnum = 0;
+    string num_str;
+    int p;
+    cin >> num_str >> p;
+//    проверка на валидность
+    int mx = -100000000;
     for(int i = 0; i < num_str.size(); i++){
-        int n = num_str[i] - '0';
-        dnum += pow(p, num_str.size()-1-i) * n;
+        if (isdigit(num_str[i])){
+            int t = num_str[i] - '0';
+            if (t > mx){
+                mx = t;
+            }
+        }
+        else {
+            num_str[i] = toupper(num_str[i]);
+            int t = 9 + ((int) num_str[i] - 64);
+            if (t > mx) {
+                mx = t;
+            }
+        }
     }
-    while (dnum > 0){
-        ans = to_string(dnum%z) + ans;
-        dnum = dnum / z;
+    if (mx >= p){
+        cout << "число не существует в данной системе счисления" << endl;
     }
-    cout << "ответ: " << ans << endl;
+    else{
+        cout << "введите основание системы счисления, в которое хотите перевести своё число: ";
+        int z;
+        cin >> z;
+        if (z > 46){
+            cout << "недопустимое основание системы счисления" << endl;
+        }
+        else{
+            double dnum = 0;
+            string int_part = "";
+            string float_part = "";
+            bool flag = 0;
+            if (num_str[0] == '-'){
+                flag = 1;
+                num_str[0] = '0';
+            }
+            int j = 0;
+            while (num_str[j] != '.' and  j < num_str.size()){
+                int_part += num_str[j];
+                j++;
+            }
+            j++;
+            while (j < num_str.size()){
+                float_part += num_str[j];
+                j++;
+            }
+            for(int i = 0; i < int_part.size(); i++){
+                int n = 0;
+                if (isdigit(int_part[i])){
+                    n = int_part[i] - '0';
+                }
+                else{
+                    n = 9 + ((int)int_part[i] - 64);
+                }
+                dnum += pow(p, int_part.size() - 1 - i) * n;
+            }
+            for(int i = 0; i < float_part.size(); i++){
+                int n = float_part[i] - '0';
+                dnum += pow(p, -(i+1)) * n;
+            }
+            int dint = trunc(dnum);
+            double dfloat = dnum - dint;
+            string ans = "";
+            while(dint > 0){
+                int t = dint%z;
+                if (t > 9){
+                    int add = t-9;
+                    char k = (char)(64+add);
+                    ans = k + ans;
+                }
+                else{
+                    ans = to_string(t) + ans;
+                }
+                dint = dint/z;
+            }
+            if (float_part != ""){
+                ans += ".";
+            }
+            j = 0;
+            while( dfloat - trunc(dfloat) != 0){
+                int t = trunc(dfloat*z);
+                if (t > 9){
+                    int add = t-9;
+                    char k = (char)(64 + add);
+                    ans = k + ans;
+                }
+                else{
+                    ans += to_string(t);
+                }
+                dfloat = dfloat*z - trunc(dfloat*z);
+                j++;
+                if (j > 10){
+                    break;
+                }
+            }
+            if (flag){
+                cout << "-" << ans << endl;
+            }
+            else{
+                cout << ans << endl;
+            }
+        }
+
+
+    }
+
+
 
 }
-
 int main() {
-    dz8();
+    dz9();
     return 0;
 }
