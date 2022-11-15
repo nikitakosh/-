@@ -1,0 +1,99 @@
+
+using namespace std;
+
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <regex>
+#include <cmath>
+#include <string>
+#include <regex>
+#include <list>
+
+
+int gcd(int n, int m){
+    while (n !=0 and m !=0 ) {
+        if (n > m){
+            n %= m;
+        }
+        else{
+            m %= n;
+        }
+    }
+    return n + m;
+}
+void dz25(){
+    int n, m;
+    cout << "введите два числа n и m через пробел: ";
+    cin >> n >> m;
+    cout << "наименьшее общее кратное двух чисел равно " << (m*n)/gcd(m,n) << endl;
+}
+void dz33(){
+    int a[10];
+    cout << "введите через пробел 10 целых чисел: ";
+    for(int i = 0; i < 10; i++){
+        cin >> a[i];
+    }
+    bool flag = true;
+    for(int i = 0; i < 10; i++){
+        if (a[0] < a[i] and a[i] < a[9]){
+            cout << i + 1 << endl;
+            flag = false;
+            break;
+        }
+    }
+    if (flag){
+        cout << 0 << endl;
+    }
+}
+void dz42(){
+    int a;
+    cout << "введите точку A: ";
+    cin  >> a;
+    int n;
+    cout << "введите число n - размер множества точек B: ";
+    cin >> n;
+    int* b = new int[n];
+    cout << "введите через пробел n точек: ";
+    for(int i = 0; i < n; i++){
+        cin >> b[i];
+    }
+    int ans = 0;
+    int mn_razn = 10000000000;
+    for(int i = 0; i < n; i++){
+        if (abs(a - b[i]) < mn_razn){
+            mn_razn = abs(a - b[i]);
+            ans = b[i];
+        }
+    }
+    cout << "самая близкая точка из множества B к точке A: " << ans << endl;
+}
+void dz56(){
+    int n;
+    cout << "введите число n: ";
+    cin >> n;
+    cout << "введите n чисел через пробел: ";
+    int* a = new int[n];
+    for(int i = 0; i < n; i++){
+        cin >> a[i];
+    }
+    int** b = new int* [n];
+    for(int i = 0; i < n; i++){
+        b[i] = new int[n];
+    }
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < n; j++){
+            b[i][j] = a[i] - 3*a[j];
+        }
+    }
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < n; j++){
+            cout << b[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+
+int main() {
+    return 0;
+}
